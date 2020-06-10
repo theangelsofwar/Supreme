@@ -28,12 +28,6 @@
 // connections[i][0] != connections[i][1]
 // There are no repeated connections.
 
-/**
- * @param {number} n
- * @param {number[][]} connections
- * @return {number[][]}
- */
-
 /** Tarjan's strongly connected components algorithm */
 // Introduction to Tarjan's strongly connected components algorithm
 // https://www.youtube.com/watch?v=TyWtx7q2D7Y
