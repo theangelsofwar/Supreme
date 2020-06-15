@@ -25,3 +25,44 @@ Example 4
 s = )
 output: false
  */
+
+/ Add any extra import statements you may need here
+
+
+// Add any helper functions you may need here
+
+var mapBrackets = { "\{": "\}", "\(" : "\)", "\[" : "\]"};
+
+function isBalanced(s) {
+
+  if(!s || !s.length){
+    //0 length is false
+    return true;
+  }
+  else if(s.length===1){
+    //the length is 1, there is not balance in the universe...
+    return false;
+  } else if(s.length%2===1){
+    return false;
+  } 
+  let stack = [];
+  for(let i=0; i<s.length; i++){
+    let el = s[i];
+    if(el in mapBrackets){
+      //opener
+      stack.push(el);
+    } else {
+      let stackTrace = stack.pop();
+      if(mapBrackets[stackTrace] !== el) {
+        return false; 
+      }
+    }
+   
+  }
+  
+  return true; 
+  //it is actually a recursive call stack...depending on whether closing is approximate or enclosing of another, 
+  
+  
+  
+}
