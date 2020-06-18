@@ -39,14 +39,31 @@ If the order is invalid, return an empty string.
 There may be multiple valid order of letters, return any one of them is fine.
  */
 
-
- const AlienDictionary = (str) => {
+ /**
+  * 
+  * @param {*} String [] dictionary
+  * @return {*} String 
+  */
+ const AlienDictionary = (dictionary) => {
    //prefix trie
-
+   let trie = {}; //map 
    //priority queue
-
+   let priorityQueue = [];
    //sliding window
+   let result = "";
 
+   for(let i=0; i<dictionary.length; i++) {
+     let el = dictionary[i]; //string in this order
+
+     //iterate string for overlap on the currently established "trie" prefix, order,
+     //if merge add between chars, 
+     //priority queue for the frequency of repeating chars in a string taking precendence
+
+     //the resultant trie will be the entire "alien alphabet"
+   }
+
+
+   return result; 
  }
 
  export default AlienDictionary;
