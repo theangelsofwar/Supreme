@@ -41,15 +41,39 @@ var minRefuelStops = function(target, startFuel, stations) {
 
   //XOR eliminate the middle stops that aren't necessary/splice
 
-  if(!stations || stations.length===0){
+  if(!stations || (stations.length === 0 && target > startFuel)){
+    //not enough gas to target mileage
     return -1;
   }
 
   let result = 0;
+  let milesRemaining = target;
+  let gas = startFuel;
+  //constraints: the miles from target/miles left and the gas available with stations in between
+  for(let i=0; i < stations.length-1 && milesRemaining > 0; i++){
 
-
-  for(let i=0; i<stations.length; i++){
+    //avoid inner looping, ensure that we can make it to the next station or exit, 
+    
+    //via conditional checks
+    //thought experiment
+    //dynamic program(similar to knapsack)
     let station = stations[i];
+    let miles = station[0];
+    let gasAvailable = station[1];
+
+    //if this was a linked list, we could have multiple pointers
+    let nextStation = stations[i+1];
+    let nextMiles = nextStation[i+1];
+    let nextGas = nextStation[i+1];
+    //shortcircuit all potential conditions to not waste time
+    //if the gas left in the inifinite tank will not make it to the next station, then refuel here. 
+    if(gas < milesRemaining && gas < nextMiles){
+      //if we cannot make the next station without refueling, label this gas station as a must
+      result++;
+      gas+=gasAvailable;
+    }
+    milesRemaining -= miles; //we have gone this far regardless
+
     //the minute we find infeasibility we will return a -1 immediately
     
   }
@@ -60,3 +84,4 @@ var minRefuelStops = function(target, startFuel, stations) {
   return result;
   //stations traverse
 };
+
