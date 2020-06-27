@@ -19,7 +19,13 @@
    //alternative, slide the window on left
    let rightWindow = str.length;
    while(leftWindow < rightWindow){
+     if(!counts[str[leftWindow]]){
+       //not in map yet, initiate
+       counts[str[leftWindow]] = 0;
+     }
 
+     //increment map
+     counts[str[leftWindow]] += 1;
    }
    return longest;
  };
