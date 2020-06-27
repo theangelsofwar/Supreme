@@ -17,16 +17,25 @@
 
 
    //alternative, slide the window on left
-   let rightWindow = str.length;
-   while(leftWindow < rightWindow){
-     if(!counts[str[leftWindow]]){
+   let rightWindow = 0;
+   while(rightWindow < str.length){
+     if(!counts[str[rightWindow]]){
        //not in map yet, initiate
-       counts[str[leftWindow]] = 0;
+       counts[str[rightWindow]] = 0;
      }
 
      //increment map
-     counts[str[leftWindow]] += 1;
+     counts[str[rightWindow]] += 1;
+
+     if(Object.values(counts).some(element => element > 1)) {
+       counts[str[leftWindow]] -= 1;
+       leftWindow += 1;
+     }
+
+     longest = Math.max(longest, rightWindow - leftWindow +1);
+     rightWindow += 1;
    }
+
    return longest;
  };
 
